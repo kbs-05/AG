@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations Agricoles - Agri-Gabon</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Plateforme de formations agricoles pour les producteurs gabonais">
+    <meta name="keywords" content="agriculture, Gabon, formations, techniques agricoles">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1a731e;
+            --primary-light: #4CAF50;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #333333;
+            --text: #333333;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+            padding-top: 70px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Navigation */
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            background-color: #1a731e;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: white !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-brand {
+            color: #1a731e !important;
+        }
+        
+        .navbar.scrolled .navbar-toggler {
+            color: #1a731e;
+            border-color: #1a731e;
+        }
+        
+        .navbar.scrolled .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(26, 115, 30, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .nav-link {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+        
+        .nav-link.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        /* Formations Section */
+        .formations-section {
+            padding: 4rem 0;
+        }
+        
+        .filter-buttons .btn {
+            margin: 0.25rem;
+            transition: all 0.3s;
+        }
+        
+        .filter-buttons .btn-outline-primary.active {
+            background-color: #1a731e;
+            color: white;
+        }
+        
+        .formation-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            margin-bottom: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .formation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .formation-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .formation-meta {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .formation-category {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #282829;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            transition: opacity 0.3s;
+        }
+        
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: #1a731e;
+                padding: 20px;
+                margin-top: 15px;
+                border-radius: 5px;
+            }
+            
+            .navbar-nav .btn {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .page-hero {
+                padding: 3rem 0;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .formation-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" [class.scrolled]="isScrolled" style="background-color: #1a731e">
+        <div class="container">
+          <a class="navbar-brand fw-bold fs-3" routerLink="/accueil" (click)="closeMenu()">
+            <i class="fas fa-leaf me-2"></i>Agri-Gabon
+          </a>
+          
+          <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-label="Menu mobile">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+          
+          <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="navbarContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/accueil" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Ressources</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">Formations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/marche" routerLinkActive="active" (click)="closeMenu()">Marché Local</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+              </li>
+              
+              <!-- Boutons connexion/inscription -->
+              <li class="nav-item my-1">
+                <a routerLink="/connexion" class="btn btn-outline-light rounded-pill px-3" (click)="closeMenu()">
+                  <i class="fas fa-sign-in-alt me-1"></i> Connexion
+                </a>
+              </li>
+              <li class="nav-item ms-lg-2 my-1">
+                <a routerLink="/c-compte" class="btn btn-success rounded-pill px-3" (click)="closeMenu()">
+                  <i class="fas fa-user-plus me-1"></i> Inscription
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!-- Hero Section -->
+    <header class="page-hero">
+        <div class="container">
+            <h1>Formez-vous aux Métiers de l'Agriculture Moderne</h1>
+            <p class="lead">Découvrez nos programmes de formation conçus par des experts pour vous accompagner dans votre développement professionnel agricole.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="formations-section">
+        <div class="container">
+            <!-- Categories Filter -->
+            <div class="filter-buttons d-flex flex-wrap justify-content-center mb-5">
+                <button class="btn btn-sm btn-outline-primary active" data-filter="all">Toutes</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="techniques">Techniques Agricoles</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="protection">Protection des Cultures</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="entrepreneuriat">Entrepreneuriat</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="agroecologie">Agroécologie</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="transformation">Transformation</button>
+            </div>
+
+            <!-- Formations Grid -->
+            <section>
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold text-primary">Nos Formations Agricoles</h2>
+                    <p class="text-muted">Choisissez parmi nos programmes complets adaptés à tous les niveaux, du débutant à l'expert</p>
+        </div>
+                
+                <div class="row g-4" id="formations-container">
+                    <!-- Formation 1 -->
+                    <div class="col-lg-4 col-md-6 formation-item" data-category="techniques">
+                        <div class="card formation-card h-100">
+                            <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" class="card-img-top formation-img" alt="Gestion de l'Irrigation">
+                            <div class="card-body">
+                                <span class="formation-category">Techniques Agricoles</span>
+                                <h3 class="card-title h5">Gestion Optimale de l'Irrigation</h3>
+                                <p class="card-text">Maîtrisez les techniques d'irrigation modernes pour économiser l'eau tout en maximisant vos rendements.</p>
+                                <div class="formation-meta d-flex justify-content-between mt-3">
+                                    <span class="fw-bold text-primary">Gratuit</span>
+                                    <span><i class="far fa-clock me-1"></i> 8 heures</span>
+                                </div>
+                                <a routerLink="/formation-irrigation" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                    Voir la formation <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Formation 2 -->
+                    <div class="col-lg-4 col-md-6 formation-item" data-category="protection">
+                        <div class="card formation-card h-100">
+                            <img src="https://www.easycessions.fr/wp-content/uploads/2022/12/cc.jpg" class="card-img-top formation-img" alt="Lutte Biologique">
+                            <div class="card-body">
+                                <span class="formation-category">Protection des Cultures</span>
+                                <h3 class="card-title h5">Lutte Biologique Intégrée</h3>
+                                <p class="card-text">Apprenez à protéger vos cultures des ravageurs sans produits chimiques grâce aux méthodes naturelles.</p>
+                                <div class="formation-meta d-flex justify-content-between mt-3">
+                                    <span class="fw-bold text-primary">15,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 12 heures</span>
+                                </div>
+                                <a routerLink="/formation-lutte-bio" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                    Voir la formation <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Formation 3 -->
+                    <div class="col-lg-4 col-md-6 formation-item" data-category="entrepreneuriat">
+                        <div class="card formation-card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.G8U6PxcfqAA4i85c0q0JLAAAAA?rs=1&pid=ImgDetMain" class="card-img-top formation-img" alt="Commercialisation Agricole">
+                            <div class="card-body">
+                                <span class="formation-category">Entrepreneuriat</span>
+                                <h3 class="card-title h5">Commercialisation des Produits Agricoles</h3>
+                                <p class="card-text">Stratégies pour vendre vos produits au meilleur prix sur les marchés locaux et internationaux.</p>
+                                <div class="formation-meta d-flex justify-content-between mt-3">
+                                    <span class="fw-bold text-primary">25,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 20 heures</span>
+                                </div>
+                                <a routerLink="/formation-commercialisation" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                    Voir la formation <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Formation 4 -->
+                    <div class="col-lg-4 col-md-6 formation-item" data-category="agroecologie">
+                        <div class="card formation-card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.o0uJsoIlV3JTZo9K6qEDrQHaE7?rs=1&pid=ImgDetMain" class="card-img-top formation-img" alt="Agriculture Durable">
+                            <div class="card-body">
+                                <span class="formation-category">Agroécologie</span>
+                                <h3 class="card-title h5">Agriculture Durable et Résiliente</h3>
+                                <p class="card-text">Techniques pour une agriculture respectueuse de l'environnement et économiquement viable.</p>
+                                <div class="formation-meta d-flex justify-content-between mt-3">
+                                    <span class="fw-bold text-primary">10,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 10 heures</span>
+                                </div>
+                                <a routerLink="/formation-agriculture-durable" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                    Voir la formation <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Formation 5 -->
+                    <div class="col-lg-4 col-md-6 formation-item" data-category="techniques">
+                        <div class="card formation-card h-100">
+                            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top formation-img" alt="Maraîchage">
+                            <div class="card-body">
+                                <span class="formation-category">Production Végétale</span>
+                                <h3 class="card-title h5">Maraîchage Intensif Bio</h3>
+                                <p class="card-text">Apprenez les techniques de production intensive de légumes biologiques à haute valeur ajoutée.</p>
+                                <div class="formation-meta d-flex justify-content-between mt-3">
+                                    <span class="fw-bold text-primary">18,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 15 heures</span>
+                    </div>
+                                <a routerLink="/formation-maraichage" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                    Voir la formation <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formation 6 -->
+                    <div class="col-lg-4 col-md-6 formation-item" data-category="transformation">
+                        <div class="card formation-card h-100">
+                            <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" class="card-img-top formation-img" alt="Agroalimentaire">
+                            <div class="card-body">
+                                <span class="formation-category">Transformation</span>
+                                <h3 class="card-title h5">Transformation Agroalimentaire</h3>
+                                <p class="card-text">Techniques de base pour transformer et valoriser vos produits agricoles en produits finis.</p>
+                                <div class="formation-meta d-flex justify-content-between mt-3">
+                                    <span class="fw-bold text-primary">20,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 18 heures</span>
+                                </div>
+                                <a routerLink="/formation-transformation" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                    Voir la formation <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a routerLink="/toutes-formations" class="btn btn-primary px-4">
+                        Voir toutes nos formations <i class="fas fa-book-open ms-2"></i>
+                    </a>
+                                </div>
+            </section>
+                            </div>
+    </main>
+
+    <!-- Featured Formation -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://th.bing.com/th/id/OIP.CBCEXTax1e-YgrY36GQqUwHaFE?rs=1&pid=ImgDetMain" 
+                         alt="Formation en Agroécologie" class="img-fluid rounded shadow">
+                        </div>
+                <div class="col-lg-6 py-4 py-lg-0">
+                    <h2 class="text-primary">Formation Certifiante en Agroécologie</h2>
+                    <p class="lead">Notre programme phare qui combine théorie et pratique pour vous former aux techniques agricoles durables.</p>
+                    
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> 6 modules complets avec experts du secteur</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Accès à une plateforme en ligne 24/7</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Visites de fermes modèles</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Certification reconnue</li>
+                    </ul>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="h4 text-primary mb-0">35,000 XAF</span>
+                        <span class="text-muted"><i class="far fa-clock me-1"></i> 30 heures</span>
+                    </div>
+                    
+                    <a routerLink="/formation-agroecologie" class="btn btn-primary">
+                        S'inscrire maintenant <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-3">Prêt à transformer votre activité agricole ?</h2>
+            <p class="lead mb-4">Inscrivez-vous dès maintenant à l'une de nos formations et bénéficiez d'un accompagnement personnalisé par nos experts.</p>
+            <a routerLink="/inscription" class="btn btn-light btn-lg px-4">
+                Commencer maintenant <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-3 bg-dark text-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="d-inline-flex align-items-center mb-3 text-decoration-none" routerLink="/accueil">
+                        <h3 class="text-white mb-0"><i class="fas fa-leaf me-2"></i>Agri-Gabon</h3>
+                    </a>
+                    <p class="text-white-50">Plateforme collaborative pour le développement de l'agriculture gabonaise.</p>
+                    <div class="social-icons d-flex gap-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-3">Navigation</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a routerLink="/accueil" class="text-white-50">Accueil</a></li>
+                        <li class="mb-2"><a routerLink="/ressource" class="text-white-50">Ressources</a></li>
+                        <li class="mb-2"><a routerLink="/formation" class="text-white-50">Formations</a></li>
+                        <li class="mb-2"><a routerLink="/marche" class="text-white-50">Marché Local</a></li>
+                        <li class="mb-2"><a routerLink="/contact" class="text-white-50">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-3">Formations</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a routerLink="/formations-techniques" class="text-white-50">Techniques Agricoles</a></li>
+                        <li class="mb-2"><a routerLink="/formations-protection" class="text-white-50">Protection des Cultures</a></li>
+                        <li class="mb-2"><a routerLink="/formations-entrepreneuriat" class="text-white-50">Entrepreneuriat</a></li>
+                        <li class="mb-2"><a routerLink="/formations-agroecologie" class="text-white-50">Agroécologie</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="text-white mb-3">Contact</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Libreville, Gabon</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +241 XX XX XX XX</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> contact&#64;agri-gabon.ga</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4 bg-secondary">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">© 2023 Agri-Gabon. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline small mb-0">
+                        <li class="list-inline-item"><a routerLink="/mentions-legales" class="text-white-50">Mentions légales</a></li>
+                        <li class="list-inline-item"><a routerLink="/confidentialite" class="text-white-50">Confidentialité</a></li>
+                        <li class="list-inline-item"><a routerLink="/conditions" class="text-white-50">Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

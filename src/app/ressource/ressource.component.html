@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources Agricoles - Agri-Gabon</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Plateforme de ressources agricoles pour les producteurs gabonais">
+    <meta name="keywords" content="agriculture, Gabon, ressources, formations, techniques agricoles">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1a731e;
+            --primary-light: #4CAF50;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #333333;
+            --text: #333333;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+            padding-top: 70px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Navigation */
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            background-color: #1a731e;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: white !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-brand {
+            color: #1a731e !important;
+        }
+        
+        .navbar.scrolled .navbar-toggler {
+            color: #1a731e;
+            border-color: #1a731e;
+        }
+        
+        .navbar.scrolled .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(26, 115, 30, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .nav-link {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+        
+        .nav-link.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        /* Resources Section */
+        .resources-section {
+            padding: 4rem 0;
+        }
+        
+        .filter-buttons .btn {
+            margin: 0.25rem;
+            transition: all 0.3s;
+        }
+        
+        .filter-buttons .btn-outline-primary.active {
+            background-color: #1a731e;
+            color: white;
+        }
+        
+        .resource-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .resource-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .resource-meta {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #282829;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            transition: opacity 0.3s;
+        }
+        
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: #1a731e;
+                padding: 20px;
+                margin-top: 15px;
+                border-radius: 5px;
+            }
+            
+            .navbar-nav .btn {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .page-hero {
+                padding: 3rem 0;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .resource-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" [class.scrolled]="isScrolled" style="background-color: #1a731e">
+        <div class="container">
+          <a class="navbar-brand fw-bold fs-3" routerLink="/accueil">
+            <i class="fas fa-leaf me-2"></i>Agri-Gabon
+          </a>
+          
+          <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-label="Menu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" [class.show]="isMenuOpen">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/accueil" routerLinkActive="active" (click)="isMenuOpen = false">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="isMenuOpen = false">Ressources</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/formation" routerLinkActive="active" (click)="isMenuOpen = false">Formations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/marche" routerLinkActive="active" (click)="isMenuOpen = false">Marché Local</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen = false">Contact</a>
+              </li>
+              
+              <li class="nav-item my-1">
+                <a class="btn btn-outline-light rounded-pill px-3" routerLink="/connexion" (click)="isMenuOpen = false">
+                  <i class="fas fa-sign-in-alt me-1"></i> Connexion
+                </a>
+              </li>
+              <li class="nav-item ms-lg-2 my-1">
+                <a class="btn btn-success rounded-pill px-3" routerLink="/c-compte" (click)="isMenuOpen = false">
+                  <i class="fas fa-user-plus me-1"></i> Inscription
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- Hero Section -->
+    <header class="page-hero">
+        <div class="container">
+            <h1>Ressources Agricoles</h1>
+            <p class="lead">Découvrez nos guides pratiques et fiches techniques spécialement conçus pour les agriculteurs gabonais</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="resources-section">
+        <div class="container">
+            <!-- Categories Filter -->
+            <div class="filter-buttons d-flex flex-wrap justify-content-center mb-5">
+                <button class="btn btn-sm btn-outline-primary active" data-filter="all">Toutes</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="cereales">Céréales</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="legumes">Légumes</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="fruits">Fruits</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="elevage">Élevage</button>
+                <button class="btn btn-sm btn-outline-primary" data-filter="techniques">Techniques</button>
+            </div>
+
+            <!-- Resources Grid -->
+            <section>
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold text-primary">Nos Guides Pratiques</h2>
+                    <p class="text-muted">Des ressources adaptées au climat et aux sols du Gabon</p>
+                </div>
+                
+                <div class="row g-4" id="resources-container">
+                    <!-- Resource 1 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="cereales">
+                        <div class="card resource-card h-100">
+                            <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" class="card-img-top resource-img" alt="Culture du Manioc">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 15 min</span>
+                                    <span><i class="fas fa-book-open me-1"></i> Guide</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Culture du Manioc</h3>
+                                <p class="card-text">Guide complet pour cultiver le manioc sous le climat gabonais, avec des techniques adaptées aux différentes régions.</p>
+                                <a href="guide-manioc.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir le guide <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resource 2 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="fruits">
+                        <div class="card resource-card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.YivBvPMCAL9LfKX074jHSgHaE7?rs=1&pid=ImgDetMain" class="card-img-top resource-img" alt="Plantation de Bananiers">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 20 min</span>
+                                    <span><i class="fas fa-book-open me-1"></i> Guide</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Plantation de Bananiers</h3>
+                                <p class="card-text">Techniques modernes pour maximiser la production de bananes, avec un focus sur la lutte contre les maladies courantes.</p>
+                                <a href="guide-bananiers.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir le guide <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource 3 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="fruits">
+                        <div class="card resource-card h-100">
+                            <img src="https://wecacao.com/wp-content/uploads/2023/06/qualite-cacao-etapes-culture-respectees.png" class="card-img-top resource-img" alt="Culture du Cacao">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 25 min</span>
+                                    <span><i class="fas fa-book-open me-1"></i> Guide</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Culture du Cacao</h3>
+                                <p class="card-text">Techniques optimales pour cultiver le cacao au Gabon, incluant la gestion de l'ombrage et la lutte contre les maladies.</p>
+                                <a href="guide-cacao.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir le guide <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource 4 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="elevage">
+                        <div class="card resource-card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.gRQIXs4gnCNXijf-dXxxogHaDk?rs=1&pid=ImgDetMain" class="card-img-top resource-img" alt="Élevage de Volailles">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 30 min</span>
+                                    <span><i class="fas fa-book-open me-1"></i> Fiche Technique</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Élevage de Volailles</h3>
+                                <p class="card-text">Méthodes modernes pour l'élevage familial de poulets, incluant alimentation, soins et prévention des maladies.</p>
+                                <a href="fiche-volailles.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir la fiche <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource 5 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="techniques">
+                        <div class="card resource-card h-100">
+                            <img src="https://www.spotjardin.com/wp-content/uploads/arrosage.png.webp" class="card-img-top resource-img" alt="Techniques d'Irrigation">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 18 min</span>
+                                    <span><i class="fas fa-video me-1"></i> Vidéo</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Techniques d'Irrigation</h3>
+                                <p class="card-text">Systèmes d'irrigation économiques adaptés aux petites exploitations agricoles gabonaises.</p>
+                                <a href="video-irrigation.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir la ressource <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource 6 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="fruits">
+                        <div class="card resource-card h-100">
+                            <img src="https://www.cercll.fr/wp-content/uploads/2022/04/culture-agrumes.jpg" class="card-img-top resource-img" alt="Culture des Agrumes">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 25 min</span>
+                                    <span><i class="fas fa-book-open me-1"></i> Guide</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Culture des Agrumes</h3>
+                                <p class="card-text">Guide pratique pour la culture des oranges, citrons et pamplemousses sous climat gabonais.</p>
+                                <a href="guide-agrumes.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir le guide <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource 7 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="techniques">
+                        <div class="card resource-card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.p977TmwMmbvkcGaW-4b_4AHaEw?rs=1&pid=ImgDetMain" class="card-img-top resource-img" alt="Agriculture Biologique">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 35 min</span>
+                                    <span><i class="fas fa-book-open me-1"></i> Manuel</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Agriculture Biologique</h3>
+                                <p class="card-text">Techniques de production biologique adaptées aux conditions tropicales du Gabon.</p>
+                                <a href="manuel-bio.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir le manuel <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource 8 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="techniques">
+                        <div class="card resource-card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.Tiqj6Ax7XfZawqaTk2uijQHaFc?rs=1&pid=ImgDetMain" class="card-img-top resource-img" alt="Transformation du Manioc">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 40 min</span>
+                                    <span><i class="fas fa-video me-1"></i> Tutoriel</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Transformation du Manioc</h3>
+                                <p class="card-text">Processus complet de transformation du manioc en produits dérivés (gari, tapioca, etc.).</p>
+                                <a href="tuto-manioc.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir le tutoriel <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource 9 -->
+                    <div class="col-lg-4 col-md-6 resource-item" data-category="elevage">
+                        <div class="card resource-card h-100">
+                            <img src="https://th.bing.com/th/id/R.314686175c90b70c6ef7661acc69e2b2?rik=i8goukmx1aio%2bg&pid=ImgRaw&r=0" class="card-img-top resource-img" alt="Élevage de Porcs">
+                            <div class="card-body">
+                                <div class="resource-meta d-flex gap-3 mb-2">
+                                    <span><i class="fas fa-clock me-1"></i> 32 min</span>
+                                    <span><i class="fas fa-book-open me-1"></i> Fiche Technique</span>
+                                </div>
+                                <h3 class="card-title h5 text-primary">Élevage Porcin</h3>
+                                <p class="card-text">Guide complet pour démarrer un élevage porcin, incluant les races adaptées au Gabon et les pratiques sanitaires.</p>
+                                <a href="fiche-porcs.html" class="btn btn-link text-primary p-0 stretched-link">
+                                    Voir la fiche <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="#" class="btn btn-primary px-4">
+                        Voir toutes les ressources <i class="fas fa-book-open ms-2"></i>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="d-inline-flex align-items-center mb-3 text-decoration-none" href="accueil.html">
+                        <h3 class="text-white mb-0"><i class="fas fa-leaf me-2"></i>Agri-Gabon</h3>
+                    </a>
+                    <p class="text-white-50">Plateforme collaborative pour le développement de l'agriculture gabonaise.</p>
+                    <div class="social-icons d-flex gap-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-3">Navigation</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="accueil.html">Accueil</a></li>
+                        <li class="mb-2"><a href="ressources.html">Ressources</a></li>
+                        <li class="mb-2"><a href="formations.html">Formations</a></li>
+                        <li class="mb-2"><a href="marche.html">Marché Local</a></li>
+                        <li class="mb-2"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-3">Ressources</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Guides PDF</a></li>
+                        <li class="mb-2"><a href="#">Vidéos</a></li>
+                        <li class="mb-2"><a href="#">Fiches techniques</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="text-white mb-3">Contact</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Libreville, Gabon</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +241 XX XX XX XX</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> contact&#64;agri-gabon.ga</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4 bg-secondary">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">© 2023 Agri-Gabon. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline small mb-0 footer-links">
+                        <li class="list-inline-item"><a href="#">Mentions légales</a></li>
+                        <li class="list-inline-item"><a href="#">Confidentialité</a></li>
+                        <li class="list-inline-item"><a href="#">Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+</body>
+</html>
