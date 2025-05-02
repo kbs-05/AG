@@ -7,15 +7,32 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { RessourceComponent } from './ressource/ressource.component';
 import { FormationComponent } from './formation/formation.component';
 import { MARCHEComponent } from './marche/marche.component';
+import { FINANCEMENTComponent } from './financement/financement.component';
+import { AST1Component } from './ast1/ast1.component';
+
+
 
 const routes: Routes = [
   { path: 'c-compte', component: CCOMPTEComponent},
+  { path: 'connexion', component: ConnexionComponent},
   { path: 'accueil', component: AccueilComponent},
   { path: 'splash-screen', component: SplashScreenComponent},
-  { path: 'connexion', component: ConnexionComponent},
-  { path: 'ressource', component: RessourceComponent},
-  { path: 'formation', component: FormationComponent},
-  { path: 'marche', component: MARCHEComponent},
+  { 
+    path: 'ressource', 
+    component: RessourceComponent,
+     
+  },
+  { 
+    path: 'formation', 
+    component: FormationComponent,
+    
+  },
+  { 
+    path: 'marche', 
+    component: MARCHEComponent,
+  },
+  { path: 'financement',component:FINANCEMENTComponent },
+  { path: 'ast1' ,component:AST1Component },
   { path: '', component: SplashScreenComponent},
 ];
 

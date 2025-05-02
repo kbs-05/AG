@@ -1,6 +1,22 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth, authState, User } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
 
+interface Resource {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  duration: string;
+  type: string;
+  description: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-ressource',
@@ -8,13 +24,17 @@ import { Router } from '@angular/router';
   templateUrl: './ressource.component.html',
   styleUrls: ['./ressource.component.css']
 })
-export class RessourceComponent {
+export class RessourceComponent implements OnInit, OnDestroy {
+  private auth: Auth = inject(Auth);
+  private router: Router = inject(Router);
+  private authSubscription!: Subscription;
+
   isMenuOpen = false;
   isScrolled = false;
   activeCategory = 'all';
 
   // Catégories de ressources
-  categories = [
+  categories: Category[] = [
     { id: 'all', name: 'Toutes' },
     { id: 'cereales', name: 'Céréales' },
     { id: 'legumes', name: 'Légumes' },
@@ -24,7 +44,7 @@ export class RessourceComponent {
   ];
 
   // Ressources (exemple)
-  resources = [
+  resources: Resource[] = [
     {
       id: 1,
       title: 'Culture du Manioc',
@@ -45,8 +65,26 @@ export class RessourceComponent {
     }
   ];
 
+  ngOnInit(): void {
+    this.setupAuthGuard();
+  }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
+  private setupAuthGuard(): void {
+    this.authSubscription = authState(this.auth).subscribe((user: User | null) => {
+      if (!user || user.isAnonymous) {
+        this.router.navigate(['/connexion']);
+      }
+    });
+  }
+
   // Filtre les ressources par catégorie
-  get filteredResources() {
+  get filteredResources(): Resource[] {
     if (this.activeCategory === 'all') {
       return this.resources;
     }
@@ -58,13 +96,25 @@ export class RessourceComponent {
     this.activeCategory = category;
   }
 
-  
   @HostListener('window:scroll')
-  onWindowScroll() {
-    this.isScrolled = window.pageYOffset > 50;
+  onWindowScroll(): void {
+    this.isScrolled = window.scrollY > 50;
   }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  openSettings(): void {
+    console.log('Ouvrir les paramètres');
+    // this.router.navigate(['/parametres']);
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeMenuOnClickOutside(event: Event): void {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.navbar') && this.isMenuOpen) {
+      this.isMenuOpen = false;
+    }
   }
 }

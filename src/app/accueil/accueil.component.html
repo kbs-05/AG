@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-      :root {
+        :root {
             --primary: #3a7d44;
             --primary-dark: #2d5e35;
             --secondary: #f8f9fa;
@@ -29,30 +30,52 @@
             padding-top: 70px;
         }
         
-        
         /* Styles des titres */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
         
+        /* Navbar (style du premier code) */
         .navbar {
-  transition: all 0.3s ease;
-  padding: 15px 0;
-}
-
-/* Navbar au scroll */
-.navbar.scrolled {
-  padding: 10px 0;
-  background-color: white !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            background-color: #1a731e;
+        }
         
-.navbar.scrolled .nav-link,
-.navbar.scrolled .navbar-brand {
-  color: #1a731e !important;
-}
-
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: white !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-brand {
+            color: #1a731e !important;
+        }
+        
+        .navbar.scrolled .navbar-toggler {
+            color: #1a731e;
+            border-color: #1a731e;
+        }
+        
+        .navbar.scrolled .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(26, 115, 30, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .nav-link {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+        
+        .nav-link.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
         
         /* Section hero */
         .hero-section {
@@ -125,6 +148,7 @@
         .stats-number {
             font-size: 2.5rem;
             font-weight: 700;
+            transition: all 0.3s ease-out;
         }
         
         /* Newsletter */
@@ -169,74 +193,21 @@
         .navbar-collapse {
             transition: all 0.3s ease;
         }
-
-        .nav-link {
-            display: block;
-            padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-            font-size: var(--bs-nav-link-font-size);
-            font-weight: var(--bs-nav-link-font-weight);
-            color: var(--bs-nav-link-color);
-            text-decoration: none;
-            background: 0 0;
-            border: 0;
-            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    
+        .navbar-toggler {
+            padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
+            font-size: var(--bs-navbar-toggler-font-size);
+            line-height: 1;
+            color: var(--bs-navbar-color);
+            background-color:#1a731e;
+            border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
+            border-radius: var(--bs-navbar-toggler-border-radius);
+            transition: var(--bs-navbar-toggler-transition);
         }
-        
-        /* Lien actif */
-        .nav-link.active {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        
-
-        
-        /* Boutons de connexion/inscription */
-        .navbar-nav .btn {
-            transition: all 0.3s ease;
-            min-width: 110px;
-            text-align: center;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-        
-        .navbar-nav .btn-outline-light {
-            border-width: 2px;
-            background-color: transparent;
-            border-color: rgba(255,255,255,0.75);
-        }
-        
-        .navbar-nav .btn-outline-light:hover {
-            background-color: rgba(255,255,255,0.1);
-            border-color: white;
-            box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
-        }
-        
-        .navbar-nav .btn-success {
-            border-width: 2px;
-            border-color: #fff;
-            background-color: #28a745;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .navbar-nav .btn-success:hover {
-            border-color: #fff;
-            background-color: #218838;
-        }
-        
-        /* Animation au survol */
-        .hover-glow:hover {
-            animation: glow-pulse 1.5s infinite alternate;
-        }
-        
-        @keyframes glow-pulse {
-            0% { box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
-            100% { box-shadow: 0 0 15px rgba(40, 167, 69, 0.8); }
-        }
-        
-        /* Point de notification */
-        .navbar-nav .btn-outline-light .translate-middle {
-            transform: translate(30%, -30%) !important;
+    
+        .fa-cog:hover {
+            transform: rotate(30deg);
+            transition: transform 0.3s ease;
         }
         
         /* Responsive design */
@@ -246,23 +217,20 @@
             }
         }
         
+        /* Responsive adjustments */
         @media (max-width: 991.98px) {
-  .navbar-collapse {
-    background-color: #1a731e;
-    padding: 20px;
-    margin-top: 15px;
-    border-radius: 5px;
-  }
-  
-  .navbar-collapse.show {
-    display: block !important;
-  }
-  
-  .navbar-nav .btn {
-    margin: 0.5rem 0;
-    width: 100%;
-  }
-}
+            .navbar-collapse {
+                background-color: #1a731e;
+                padding: 20px;
+                margin-top: 15px;
+                border-radius: 5px;
+            }
+            
+            .navbar-nav .btn {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+        }
         
         @media (max-width: 767.98px) {
             /* Ajustement des stats */
@@ -300,17 +268,6 @@
                 margin-bottom: 1.5rem;
             }
         }
-        .navbar-toggler {
-               padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
-               font-size: var(--bs-navbar-toggler-font-size);
-               line-height: 1;
-               color: var(--bs-navbar-color);
-               background-color:#1a731e;
-               border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
-               border-radius: var(--bs-navbar-toggler-border-radius);
-               transition: var(--bs-navbar-toggler-transition);
-        }
-       
     </style>
 </head>
 <body>
@@ -318,45 +275,54 @@
         <div class="container">
           <a class="navbar-brand fw-bold fs-3" routerLink="/accueil" (click)="closeMenu()">
             <i class="fas fa-leaf me-2"></i>Agri-Gabon
-          </a>
-          
+            </a>
+            
           <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-label="Menu mobile">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
           <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="navbarContent">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/accueil" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Ressources</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">Formations</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Marché Local</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Contact</a>
-              </li>
-              
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/accueil" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Astuces</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">Formations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/marche" routerLinkActive="active" (click)="closeMenu()">Marché Local</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/financement" routerLinkActive="active" (click)="closeMenu()">Financement</a>
+                </li>
+             
+                
               <!-- Boutons connexion/inscription -->
               <li class="nav-item my-1">
                 <a routerLink="/connexion" class="btn btn-outline-light rounded-pill px-3" (click)="closeMenu()">
-                  <i class="fas fa-sign-in-alt me-1"></i> Connexion
-                </a>
-              </li>
+      <i class="fas fa-sign-in-alt me-1"></i> Connexion
+    </a>
+  </li>
               <li class="nav-item ms-lg-2 my-1">
                 <a routerLink="/c-compte" class="btn btn-success rounded-pill px-3" (click)="closeMenu()">
-                  <i class="fas fa-user-plus me-1"></i> Inscription
-                </a>
-              </li>
+      <i class="fas fa-user-plus me-1"></i> Inscription
+    </a>
+  </li>
+  
+  
+
+  <li class="nav-item ms-lg-2 my-1 d-flex align-items-center">
+    <button class="btn btn-link text-light p-0" (click)="openSettings()" title="Profil">
+        <i class="fas fa-user fa-lg"></i>
+    </button>
+</li>
             </ul>
-          </div>
+            </div>
         </div>
-      </nav>
+    </nav>
 
     <!-- Section Hero -->
     <section id="accueil" class="hero-section d-flex align-items-center">
@@ -549,30 +515,29 @@
         </div>
     </section>
 
-    <!-- Section Statistiques -->
-    <section class="stats-section py-5">
-        <div class="container py-4">
-            <div class="row text-center g-4">
-                <div class="col-md-3 col-6">
-                    <div class="stats-number">1 200+</div>
-                    <p class="mb-0 opacity-75">Apprenants formés</p>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="stats-number">98%</div>
-                    <p class="mb-0 opacity-75">Satisfaction</p>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="stats-number">25</div>
-                    <p class="mb-0 opacity-75">Formateurs experts</p>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="stats-number">15</div>
-                    <p class="mb-0 opacity-75">Partenariats</p>
-                </div>
+  <!-- Section Statistiques -->
+ <section class="stats-section py-5">
+    <div class="container py-4">
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-6">
+                <div class="stats-number">+{{ currentStats.learners }}</div>
+                <p class="mb-0 opacity-75">Apprenants formés</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stats-number">{{ currentStats.satisfaction }}%</div>
+                <p class="mb-0 opacity-75">Satisfaction</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stats-number">{{ currentStats.trainers }}</div>
+                <p class="mb-0 opacity-75">Formateurs experts</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stats-number">{{ currentStats.partnerships }}</div>
+                <p class="mb-0 opacity-75">Partenariats</p>
             </div>
         </div>
-    </section>
-
+    </div>
+ </section>
     <!-- Section Newsletter -->
     <section class="newsletter-section py-5">
         <div class="container py-4">

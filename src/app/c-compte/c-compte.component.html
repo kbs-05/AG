@@ -195,53 +195,55 @@
             <p>Rejoignez la communauté Agri-Gabon</p>
         </div>
 
-        <form class="form-grid" action="/register" method="POST">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
             <div class="form-row">
-                <div class="form-group">
-                    <label for="firstname">Prénom</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Votre prénom" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastname">Nom</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Votre nom" required>
-                </div>
+              <div class="form-group">
+                <label for="firstname">Prénom</label>
+                <input type="text" id="firstname" formControlName="firstname" placeholder="Votre prénom" required>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Nom</label>
+                <input type="text" id="lastname" formControlName="lastname" placeholder="Votre nom" required>
+              </div>
             </div>
-            
+          
             <div class="form-group">
-                <label for="email">Adresse email</label>
-                <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+              <label for="email">Adresse email</label>
+              <input type="email" id="email" formControlName="email" placeholder="votre@email.com" required>
             </div>
-            
+          
             <div class="form-row">
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirmer le mot de passe</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
-                </div>
+              <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" formControlName="password" placeholder="••••••••" required>
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirmer le mot de passe</label>
+                <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="••••••••" required>
+              </div>
             </div>
-            
+          
             <div class="form-group">
-                <label for="phone">Téléphone</label>
-                <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" formControlName="phone" placeholder="Votre numéro de téléphone">
             </div>
-            
+          
             <div class="form-group">
-                <label for="address">Adresse</label>
-                <input type="text" id="address" name="address" placeholder="Votre adresse">
+              <label for="address">Adresse</label>
+              <input type="text" id="address" formControlName="address" placeholder="Votre adresse">
             </div>
-            
+          
             <div class="terms-group">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms" class="terms-text">
-                    J'accepte les <a href="/terms">conditions générales</a> et la <a href="/privacy">politique de confidentialité</a>
-                </label>
+              <input type="checkbox" id="terms" formControlName="terms" required>
+              <label for="terms" class="terms-text">
+                J'accepte les <a href="/terms">conditions générales</a> et la <a href="/privacy">politique de confidentialité</a>
+              </label>
             </div>
-            
-            <button type="submit" class="btn btn-primary" routerLink="/accueil">Créer mon compte</button>
-        </form>
+          
+            <button type="submit" class="btn btn-primary">Créer mon compte</button>
+          </form>
+          
         
         <div class="login-section">
             <p class="login-text">Vous avez déjà un compte ?</p>

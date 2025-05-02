@@ -199,6 +199,10 @@
                 margin-bottom: 1rem;
             }
         }
+        .fa-cog:hover {
+            transform: rotate(30deg);
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -218,7 +222,7 @@
                 <a class="nav-link" routerLink="/accueil" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Ressources</a>
+                <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Astuces</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">Formations</a>
@@ -227,20 +231,27 @@
                 <a class="nav-link" routerLink="/marche" routerLinkActive="active" (click)="closeMenu()">Marché Local</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
-              </li>
+                <a class="nav-link" routerLink="/financement" routerLinkActive="active" (click)="closeMenu()">Financement</a>
+            </li>
+              
               
               <!-- Boutons connexion/inscription -->
               <li class="nav-item my-1">
                 <a routerLink="/connexion" class="btn btn-outline-light rounded-pill px-3" (click)="closeMenu()">
-                  <i class="fas fa-sign-in-alt me-1"></i> Connexion
+                    <i class="fas fa-sign-in-alt me-1"></i> Connexion
                 </a>
               </li>
               <li class="nav-item ms-lg-2 my-1">
                 <a routerLink="/c-compte" class="btn btn-success rounded-pill px-3" (click)="closeMenu()">
-                  <i class="fas fa-user-plus me-1"></i> Inscription
+                    <i class="fas fa-user-plus me-1"></i> Inscription
                 </a>
               </li>
+
+              <li class="nav-item ms-lg-2 my-1 d-flex align-items-center">
+                <button class="btn btn-link text-light p-0" (click)="openSettings()" title="Profil">
+                    <i class="fas fa-user fa-lg"></i>
+                </button>
+            </li>
             </ul>
           </div>
         </div>
@@ -278,77 +289,77 @@
                     <!-- Formation 1 -->
                     <div class="col-lg-4 col-md-6 formation-item" data-category="techniques">
                         <div class="card formation-card h-100">
-                            <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" class="card-img-top formation-img" alt="Gestion de l'Irrigation">
+                            <img src="https://thumbs.dreamstime.com/b/poisson-chat-manger-de-la-nourriture-sur-pisciculture-nourrit-nombreux-poissons-d-eau-douce-agriculture-aquacole-flottant-pour-246285173.jpg" class="card-img-top formation-img" alt="Pisciculture">
                             <div class="card-body">
-                                <span class="formation-category">Techniques Agricoles</span>
-                                <h3 class="card-title h5">Gestion Optimale de l'Irrigation</h3>
-                                <p class="card-text">Maîtrisez les techniques d'irrigation modernes pour économiser l'eau tout en maximisant vos rendements.</p>
+                                <span class="formation-category">Aquaculture</span>
+                                <h3 class="card-title h5">Techniques Modernes de Pisciculture</h3>
+                                <p class="card-text">Maîtrisez les méthodes d'élevage de poissons en étang, bassins et systèmes en recirculation pour une production optimale.</p>
                                 <div class="formation-meta d-flex justify-content-between mt-3">
-                                    <span class="fw-bold text-primary">Gratuit</span>
-                                    <span><i class="far fa-clock me-1"></i> 8 heures</span>
+                                    <span class="fw-bold text-primary">20,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 20 heures</span>
                                 </div>
-                                <a routerLink="/formation-irrigation" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                <a routerLink="/formation-pisciculture" class="btn btn-link text-primary p-0 stretched-link mt-2">
                                     Voir la formation <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                     <!-- Formation 2 -->
                     <div class="col-lg-4 col-md-6 formation-item" data-category="protection">
                         <div class="card formation-card h-100">
-                            <img src="https://www.easycessions.fr/wp-content/uploads/2022/12/cc.jpg" class="card-img-top formation-img" alt="Lutte Biologique">
+                            <img src="https://img.freepik.com/photos-premium/agriculture-interieure-elevage-poulets-domestiques-alimentation-poulets-alimentation-poulets-griller-aliments-biologiques_50179-1989.jpg?w=2000" class="card-img-top formation-img" alt="Élevage de Poulets">
                             <div class="card-body">
-                                <span class="formation-category">Protection des Cultures</span>
-                                <h3 class="card-title h5">Lutte Biologique Intégrée</h3>
-                                <p class="card-text">Apprenez à protéger vos cultures des ravageurs sans produits chimiques grâce aux méthodes naturelles.</p>
+                                <span class="formation-category">Aviculture</span>
+                                <h3 class="card-title h5">Élevage Modernes de Volailles</h3>
+                                <p class="card-text">Apprenez les techniques d'élevage intensif et semi-intensif de poulets de chair et pondeuses pour une production optimale.</p>
                                 <div class="formation-meta d-flex justify-content-between mt-3">
-                                    <span class="fw-bold text-primary">15,000 XAF</span>
-                                    <span><i class="far fa-clock me-1"></i> 12 heures</span>
+                                    <span class="fw-bold text-primary">18,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 15 heures</span>
                                 </div>
-                                <a routerLink="/formation-lutte-bio" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                <a routerLink="/formation-aviculture" class="btn btn-link text-primary p-0 stretched-link mt-2">
                                     Voir la formation <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                     <!-- Formation 3 -->
                     <div class="col-lg-4 col-md-6 formation-item" data-category="entrepreneuriat">
                         <div class="card formation-card h-100">
-                            <img src="https://th.bing.com/th/id/OIP.G8U6PxcfqAA4i85c0q0JLAAAAA?rs=1&pid=ImgDetMain" class="card-img-top formation-img" alt="Commercialisation Agricole">
+                            <img src="https://th.bing.com/th/id/OIP.r38I2ZBctL7KeasiuGZRnQHaFj?rs=1&pid=ImgDetMain" class="card-img-top formation-img" alt="Élevage de Cochons">
                             <div class="card-body">
-                                <span class="formation-category">Entrepreneuriat</span>
-                                <h3 class="card-title h5">Commercialisation des Produits Agricoles</h3>
-                                <p class="card-text">Stratégies pour vendre vos produits au meilleur prix sur les marchés locaux et internationaux.</p>
+                                <span class="formation-category">Élevage</span>
+                                <h3 class="card-title h5">Élevage Porcin Moderne</h3>
+                                <p class="card-text">Maîtrisez les techniques d'élevage intensif de porcs pour une production de qualité et rentable.</p>
                                 <div class="formation-meta d-flex justify-content-between mt-3">
-                                    <span class="fw-bold text-primary">25,000 XAF</span>
-                                    <span><i class="far fa-clock me-1"></i> 20 heures</span>
+                                    <span class="fw-bold text-primary">30,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 25 heures</span>
                                 </div>
-                                <a routerLink="/formation-commercialisation" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                <a routerLink="/formation-elevage-porcin" class="btn btn-link text-primary p-0 stretched-link mt-2">
                                     Voir la formation <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                     <!-- Formation 4 -->
                     <div class="col-lg-4 col-md-6 formation-item" data-category="agroecologie">
                         <div class="card formation-card h-100">
-                            <img src="https://th.bing.com/th/id/OIP.o0uJsoIlV3JTZo9K6qEDrQHaE7?rs=1&pid=ImgDetMain" class="card-img-top formation-img" alt="Agriculture Durable">
+                            <img src="https://www.afrique-agriculture.org/sites/afrique_agriculture/files/elevage_des_boeufs_en_guinee_photo_aliou_diallo.jpeg" class="card-img-top formation-img" alt="Élevage Bovin">
                             <div class="card-body">
-                                <span class="formation-category">Agroécologie</span>
-                                <h3 class="card-title h5">Agriculture Durable et Résiliente</h3>
-                                <p class="card-text">Techniques pour une agriculture respectueuse de l'environnement et économiquement viable.</p>
+                                <span class="formation-category">Élevage</span>
+                                <h3 class="card-title h5">Élevage Bovin Professionnel</h3>
+                                <p class="card-text">Maîtrisez les techniques modernes d'élevage de bœufs pour la production de viande ou de lait de qualité.</p>
                                 <div class="formation-meta d-flex justify-content-between mt-3">
-                                    <span class="fw-bold text-primary">10,000 XAF</span>
-                                    <span><i class="far fa-clock me-1"></i> 10 heures</span>
+                                    <span class="fw-bold text-primary">35,000 XAF</span>
+                                    <span><i class="far fa-clock me-1"></i> 30 heures</span>
                                 </div>
-                                <a routerLink="/formation-agriculture-durable" class="btn btn-link text-primary p-0 stretched-link mt-2">
+                                <a routerLink="/formation-elevage-bovin" class="btn btn-link text-primary p-0 stretched-link mt-2">
                                     Voir la formation <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                     <!-- Formation 5 -->

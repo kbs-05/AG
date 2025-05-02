@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri-Gabon | Formations Agronomie Moderne</title>
+    
+    <!-- Chargement de Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Chargement de Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chargement des polices Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary-green: #1a731e;
+            --secondary-green: #2e7d32;
+            --light-green: #f1f8e9;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), url('https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center);
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .astuce-card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .astuce-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            background-color: var(--primary-green);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .badge-category {
+            background-color: var(--secondary-green);
+            color: white;
+        }
+        
+        .search-box {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .search-box i {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: var(--primary-green);
+        }
+        
+        .search-box input {
+            padding-left: 40px;
+            border-radius: 50px;
+            border: 2px solid #ddd;
+        }
+        
+        .filter-btn {
+            border-radius: 50px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--primary-green);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-green);
+            color: white;
+        }
+    </style>
+</head>    
+    <body>
+        <section class="hero-section text-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Astuces pour Augmenter le Rendement du Manioc</h1>
+                <p class="lead">Découvrez les techniques éprouvées adaptées aux conditions gabonaises</p>
+            </div>
+        </section>
+          <!-- Main Content -->
+    <div class="container py-5">
+        <!-- Search and Filter -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Rechercher une astuce...">
+                </div>
+            </div>
+            <div class="col-md-6 text-end">
+                <div class="filter-buttons">
+                    <button class="btn btn-outline-success filter-btn active" data-filter="all">Toutes</button>
+                    <button class="btn btn-outline-success filter-btn" data-filter="variete">Variétés</button>
+                    <button class="btn btn-outline-success filter-btn" data-filter="sol">Sol</button>
+                    <button class="btn btn-outline-success filter-btn" data-filter="plantation">Plantation</button>
+                    <button class="btn btn-outline-success filter-btn" data-filter="protection">Protection</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Astuces Grid -->
+        <div class="row" id="astucesContainer">
+            <!-- Les cartes d'astuces seront générées dynamiquement par JavaScript -->
+        </div>
+
+        <!-- Video Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4 text-center" style="color: var(--primary-green)">Tutoriels Vidéo</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="video-thumbnail ratio ratio-16x9">
+                            <img src="https://img.youtube.com/vi/VIDEO_ID_1/maxresdefault.jpg" class="img-fluid rounded" alt="Technique de plantation">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h5 class="mt-2">Technique de plantation en angle</h5>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="video-thumbnail ratio ratio-16x9">
+                            <img src="https://img.youtube.com/vi/VIDEO_ID_2/maxresdefault.jpg" class="img-fluid rounded" alt="Fertilisation bio">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h5 class="mt-2">Préparation d'engrais bio</h5>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="video-thumbnail ratio ratio-16x9">
+                            <img src="https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg" class="img-fluid rounded" alt="Lutte contre ravageurs">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h5 class="mt-2">Lutte naturelle contre les ravageurs</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>© 2023 Agri-Gabon - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>

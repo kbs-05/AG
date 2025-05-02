@@ -1,24 +1,23 @@
-import { Component, HostListener, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, authState, User } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-formation',
-  standalone:false,
-  templateUrl: './formation.component.html',
-  styleUrls: ['./formation.component.css']
+  selector: 'app-financement', 
+  standalone: false,
+  templateUrl: './financement.component.html',
+  styleUrls: ['./financement.component.css']
 })
-export class FormationComponent implements OnInit, OnDestroy {
+export class FINANCEMENTComponent implements OnInit {
   private auth: Auth = inject(Auth);
   private router: Router = inject(Router);
   private authSubscription!: Subscription;
 
-  isScrolled = false;
   isMenuOpen = false;
+  isScrolled = false;
 
   ngOnInit(): void {
-    this.onWindowScroll(); // Initialize scroll state
     this.setupAuthGuard();
   }
 
@@ -31,32 +30,14 @@ export class FormationComponent implements OnInit, OnDestroy {
   private setupAuthGuard(): void {
     this.authSubscription = authState(this.auth).subscribe((user: User | null) => {
       if (!user || user.isAnonymous) {
-        this.router.navigate(['/connexion']); // Utilisation du Router Angular au lieu de window.location
+        this.router.navigate(['/connexion']);
       }
     });
   }
 
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    this.isScrolled = window.scrollY > 50;
-  }
-
+  // Gestion du menu
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  closeMenu(): void {
-    this.isMenuOpen = false;
-  }
-
-  navigateTo(path: string): void {
-    this.closeMenu();
-    this.router.navigate([path]);
-  }
-
-  openSettings(): void {
-    console.log('Ouvrir les paramètres');
-    // this.router.navigate(['/parametres']);
   }
 
   @HostListener('document:click', ['$event'])
@@ -65,5 +46,19 @@ export class FormationComponent implements OnInit, OnDestroy {
     if (!target.closest('.navbar') && this.isMenuOpen) {
       this.isMenuOpen = false;
     }
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.isScrolled = window.scrollY > 50;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
+
+  openSettings(): void {
+    console.log('Ouvrir les paramètres');
+    // this.router.navigate(['/parametres']);
   }
 }

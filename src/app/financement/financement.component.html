@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri-Gabon | Formations Agronomie Moderne</title>
+    
+    <!-- Chargement de Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Chargement de Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chargement des polices Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+         :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #388e3c;
+            --accent-color: #8bc34a;
+            --light-color: #f1f8e9;
+            --dark-color: #1b5e20;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+       /* Navbar (style du premier code) */
+       .navbar {
+        transition: all 0.3s ease;
+        padding: 0 0;
+        background-color: #1a731e;
+    }
+    
+    .navbar.scrolled {
+        padding: 10px 0;
+        background-color: white !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .navbar.scrolled .nav-link,
+    .navbar.scrolled .navbar-brand {
+        color: #1a731e !important;
+    }
+    
+    .navbar.scrolled .navbar-toggler {
+        color: #1a731e;
+        border-color: #1a731e;
+    }
+    
+    .navbar.scrolled .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(26, 115, 30, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    
+    .nav-link {
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+    
+    .nav-link:hover {
+        opacity: 0.8;
+    }
+    
+    .nav-link.active {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    
+    /* Menu mobile */
+    .navbar-collapse {
+        transition: all 0.3s ease;
+    }
+
+    .navbar-toggler {
+        padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
+        font-size: var(--bs-navbar-toggler-font-size);
+        line-height: 1;
+        color: var(--bs-navbar-color);
+        background-color:#1a731e;
+        border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
+        border-radius: var(--bs-navbar-toggler-border-radius);
+        transition: var(--bs-navbar-toggler-transition);
+    }
+
+    .fa-cog:hover {
+        transform: rotate(30deg);
+        transition: transform 0.3s ease;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        .navbar-collapse {
+            background-color: #1a731e;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        
+        .navbar-nav .btn {
+            margin: 0.5rem 0;
+            width: 100%;
+        }
+    }
+    header {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+        background-size: cover;
+        color: white;
+        padding: 130px 0 40px;
+        text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #169f5f;
+            color: #02351e;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .divider {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 40px 0;
+        }
+        
+        h2 {
+            color:#096d40;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-button {
+            padding: 8px 20px;
+            background-color: var(--light-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-button:hover, .filter-button.active {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+        
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .opportunity-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .opportunity-card h3 {
+            color: #1a731e;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .partner {
+            font-weight: bold;
+            color:#1a731e;
+            margin: 10px 0;
+        }
+        
+        .learn-more {
+            display: inline-block;
+            color:#1a731e;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+        
+        .how-to-apply {
+            background-color: #b9f1d7;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 50px 0;
+        }
+        
+        .how-to-apply ol {
+            padding-left: 20px;
+        }
+        
+        .how-to-apply li {
+            margin-bottom: 10px;
+        }
+        
+        .testimonial {
+            font-style: italic;
+            text-align: center;
+            margin: 40px 0;
+            font-size: 1.2rem;
+            color: var(--dark-color);
+        }
+        
+        .contact-box {
+            background-color: #01bc65;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .contact-box a {
+           
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: #01bc65;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" [class.scrolled]="isScrolled" style="background-color: #1a731e">
+        <div class="container">
+          <a class="navbar-brand fw-bold fs-3" routerLink="/accueil" (click)="closeMenu()">
+            <i class="fas fa-leaf me-2"></i>Agri-Gabon
+            </a>
+            
+          <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-label="Menu mobile">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+          <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="navbarContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/accueil" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/ressource" routerLinkActive="active" (click)="closeMenu()">Astuces</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/formation" routerLinkActive="active" (click)="closeMenu()">Formations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/marche" routerLinkActive="active" (click)="closeMenu()">Marché Local</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/financement" routerLinkActive="active" (click)="closeMenu()">Financement</a>
+                </li>
+             
+                
+              <!-- Boutons connexion/inscription -->
+              <li class="nav-item my-1">
+                <a routerLink="/connexion" class="btn btn-outline-light rounded-pill px-3" (click)="closeMenu()">
+      <i class="fas fa-sign-in-alt me-1"></i> Connexion
+    </a>
+    </li>
+              <li class="nav-item ms-lg-2 my-1">
+                <a routerLink="/c-compte" class="btn btn-success rounded-pill px-3" (click)="closeMenu()">
+      <i class="fas fa-user-plus me-1"></i> Inscription
+    </a>
+    </li>
+    
+    <li class="nav-item ms-lg-2 my-1 d-flex align-items-center">
+        <button class="btn btn-link text-light p-0" (click)="openSettings()" title="Profil">
+            <i class="fas fa-user fa-lg"></i>
+        </button>
+    </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div class="container">
+            <h1>Financement pour l'Agriculture Durable au Gabon</h1>
+            <p>Accédez à des microcrédits, subventions et partenariats pour lancer ou développer vos projets agricoles et agroalimentaires au Gabon.</p>
+            <a href="#opportunites" class="cta-button">Voir les Opportunités</a>
+        </div>
+    </header>   
+    <main class="container">
+        <section id="opportunites">
+            <h2>Opportunités de Financement</h2>
+            
+           
+            
+            <div class="opportunities-grid">
+                <div class="opportunity-card">
+                    <h3>Microcrédit Agricole</h3>
+                    <div class="partner">Partenaire : Agence Française de Développement (AFD)</div>
+                    <p>Prêts à faible taux pour acheter des semences, du matériel agricole ou développer votre ferme.</p>
+                    <a href="#" class="learn-more">En savoir plus</a>
+                </div>
+                
+                <div class="opportunity-card">
+                    <h3>Subvention GRAINE</h3>
+                    <div class="partner">Partenaire : Gouvernement Gabonais</div>
+                    <p>Soutien financier spécial pour les coopératives agricoles et projets agroalimentaires.</p>
+                    <a href="#" class="learn-more">En savoir plus</a>
+                </div>
+                
+                <div class="opportunity-card">
+                    <h3>Partenariat Olam Agro</h3>
+                    <div class="partner">Partenaire : Olam Gabon</div>
+                    <p>Collaboration stratégique pour la production, transformation et commercialisation de produits agricoles.</p>
+                    <a href="#" class="learn-more">En savoir plus</a>
+                </div>
+                
+                <div class="opportunity-card">
+                    <h3>Fonds FIDA</h3>
+                    <div class="partner">Partenaire : Fonds International de Développement Agricole</div>
+                    <p>Subventions pour projets durables en zones rurales, incluant l'agroalimentaire.</p>
+                    <a href="#" class="learn-more">En savoir plus</a>
+                </div>
+                
+                <div class="opportunity-card">
+                    <h3>Prêt Coopératif</h3>
+                    <div class="partner">Partenaire : Banque Gabonaise de Développement</div>
+                    <p>Financement pour groupes d'agriculteurs investissant dans la transformation alimentaire.</p>
+                    <a href="#" class="learn-more">En savoir plus</a>
+                </div>
+                
+                <div class="opportunity-card">
+                    <h3>Programme Green Gabon</h3>
+                    <div class="partner">Partenaire : Ministère de l'Agriculture</div>
+                    <p>Aides pour projets innovants en agriculture durable et circuits courts.</p>
+                    <a href="#" class="learn-more">En savoir plus</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="how-to-apply">
+            <h2>Comment postuler ?</h2>
+            <ol>
+                <li>Sélectionnez l'opportunité correspondant à votre projet</li>
+                <li>Préparez votre dossier (business plan, budget)</li>
+                <li>Soumettez votre demande en ligne</li>
+                <li>Suivi personnalisé par nos experts</li>
+            </ol>
+            <a href="#" class="cta-button">Guide complet des démarches</a>
+        </section>
+        
+       
+        
+        <section class="contact-box">
+            <h2>Vous avez un projet ?</h2>
+            <p>Contactez nos conseillers en financement agricole :</p>
+            <p>📞 +241 XX XX XX XX<br>
+            ✉️contact&#64;agri-gabon.ga</p>
+            <a href="#" class="cta-button">Demander un accompagnement</a>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Plateforme de Financement Agricole Gabon - Tous droits réservés</p>
+        </div>
+    </footer>     
+    
+</body>
+</html>

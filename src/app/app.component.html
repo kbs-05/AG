@@ -1,3 +1,56 @@
 <main>
-<router-outlet></router-outlet>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" [class.scrolled]="isScrolled" style="background-color: #1a731e">
+        <div class="container">
+          <a class="navbar-brand fw-bold fs-3" (click)="navigateTo('/accueil')">
+            <i class="fas fa-leaf me-2"></i>Agri-Gabon
+          </a>
+          
+          <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" [class.show]="isMenuOpen">
+            <ul class="navbar-nav ms-auto">
+              <!-- Liens toujours visibles -->
+              <li class="nav-item">
+                <a class="nav-link" (click)="navigateTo('/accueil')">Accueil</a>
+              </li>
+              
+              <!-- Liens protégés mais visibles -->
+              <li class="nav-item">
+                <a class="nav-link" (click)="navigateTo('/ressource')">Ressources</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="navigateTo('/formation')">Formations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="navigateTo('/marche')">Marché Local</a>
+              </li>
+      
+              <!-- Boutons connexion/déconnexion -->
+              @if (!isLoggedIn) {
+                <li class="nav-item my-1">
+                  <a class="btn btn-outline-light rounded-pill px-3" (click)="navigateTo('/connexion')">
+                    <i class="fas fa-sign-in-alt me-1"></i> Connexion
+                  </a>
+                </li>
+                <li class="nav-item ms-lg-2 my-1">
+                  <a class="btn btn-success rounded-pill px-3" (click)="navigateTo('/c-compte')">
+                    <i class="fas fa-user-plus me-1"></i> Inscription
+                  </a>
+                </li>
+              } @else {
+                <li class="nav-item ms-lg-2 my-1">
+                  <button class="btn btn-danger rounded-pill px-3" (click)="logout()">
+                    <i class="fas fa-sign-out-alt me-1"></i> Déconnexion
+                  </button>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <router-outlet></router-outlet>
+
 </main>
