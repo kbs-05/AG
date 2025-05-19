@@ -17,4 +17,6 @@ export class AuthService {
   getUser() {
     return this.afAuth.authState;
   }
+
+  
 }

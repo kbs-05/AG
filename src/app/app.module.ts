@@ -22,6 +22,7 @@ import { FormationComponent } from './formation/formation.component';
 import { MARCHEComponent } from './marche/marche.component';
 import { FINANCEMENTComponent } from './financement/financement.component';
 import { AST1Component } from './ast1/ast1.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AST1Component } from './ast1/ast1.component';
     FormationComponent,
     MARCHEComponent,
     FINANCEMENTComponent,
-    AST1Component
+    AST1Component,
+    ProfilComponent
   ],
   imports: [
     FormsModule,

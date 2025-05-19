@@ -26,6 +26,7 @@ export class CCOMPTEComponent {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       phone: [''],
+      region: ['', Validators.required],
       address: [''],
       terms: [false, Validators.requiredTrue]
     });

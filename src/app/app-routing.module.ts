@@ -9,6 +9,8 @@ import { FormationComponent } from './formation/formation.component';
 import { MARCHEComponent } from './marche/marche.component';
 import { FINANCEMENTComponent } from './financement/financement.component';
 import { AST1Component } from './ast1/ast1.component';
+import { ProfilComponent } from './profil/profil.component';
+
 
 
 
@@ -33,6 +35,7 @@ const routes: Routes = [
   },
   { path: 'financement',component:FINANCEMENTComponent },
   { path: 'ast1' ,component:AST1Component },
+  { path:'profil' ,component:ProfilComponent },
   { path: '', component: SplashScreenComponent},
 ];
 

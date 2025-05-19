@@ -300,22 +300,12 @@
                 </li>
              
                 
-              <!-- Boutons connexion/inscription -->
-              <li class="nav-item my-1">
-                <a routerLink="/connexion" class="btn btn-outline-light rounded-pill px-3" (click)="closeMenu()">
-      <i class="fas fa-sign-in-alt me-1"></i> Connexion
-    </a>
-  </li>
-              <li class="nav-item ms-lg-2 my-1">
-                <a routerLink="/c-compte" class="btn btn-success rounded-pill px-3" (click)="closeMenu()">
-      <i class="fas fa-user-plus me-1"></i> Inscription
-    </a>
-  </li>
+            
   
   
 
   <li class="nav-item ms-lg-2 my-1 d-flex align-items-center">
-    <button class="btn btn-link text-light p-0" (click)="openSettings()" title="Profil">
+    <button class="btn btn-link text-light p-0"  title="Profil" routerLink="/profil">
         <i class="fas fa-user fa-lg"></i>
     </button>
 </li>
